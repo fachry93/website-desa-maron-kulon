@@ -1,50 +1,56 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "../PublicPage/home.jsx";
-import TentangKami from "../PublicPage/aboutus.jsx";
-import ProfileAdmin from "../AdminPages/adminprofile.jsx";
-import HomeSlider from "../AdminPages/adminhomeslider.jsx";
-import BeritaBaru from "../AdminPages/beritabaru.jsx";
-import LayananKami from "../PublicPage/layanankami"; // pastikan export default ada di file ini
-import TambahKategoriBerita from "../AdminPages/kategoriberita.jsx";
-import TambahPenduduk from "../AdminPages/tambahpenduduk.jsx";
-import SignIn from "../PublicPage/singin.jsx";
-import SignUp from "../PublicPage/singup.jsx"; // <-- import signup
-import AdminDashboard from "../AdminPages/admindashboard.jsx"; // <- tambah import
-import KategoriPenduduk from "../AdminPages/kategoripenduduk.jsx"; // <-- tambahkan import
-import TambahStaf from "../AdminPages/tambahstaf.jsx";
-import KategoriJabatan from "../AdminPages/kategorijabatan.jsx";
-import Berita from "../PublicPage/berita"; // pastikan export default ada di berita.jsx
-import BeritaDetail from "../PublicPage/beritaDetail"; // <-- tambah import
-import LayananAdmin from "../AdminPages/layananadmin";
-import PermohonanAdmin from "../AdminPages/permohonanadmin.jsx";
+
+// Public Pages
+const Home = lazy(() => import("../PublicPage/home.jsx"));
+const TentangKami = lazy(() => import("../PublicPage/aboutus.jsx"));
+const LayananKami = lazy(() => import("../PublicPage/layanankami.jsx"));
+const SignIn = lazy(() => import("../PublicPage/singin.jsx"));
+const SignUp = lazy(() => import("../PublicPage/singup.jsx"));
+const Berita = lazy(() => import("../PublicPage/berita.jsx"));
+const BeritaDetail = lazy(() => import("../PublicPage/beritaDetail.jsx"));
+
+// Admin Pages
+const ProfileAdmin = lazy(() => import("../AdminPages/adminprofile.jsx"));
+const HomeSlider = lazy(() => import("../AdminPages/adminhomeslider.jsx"));
+const BeritaBaru = lazy(() => import("../AdminPages/beritabaru.jsx"));
+const TambahKategoriBerita = lazy(() => import("../AdminPages/kategoriberita.jsx"));
+const TambahPenduduk = lazy(() => import("../AdminPages/tambahpenduduk.jsx"));
+const KategoriPenduduk = lazy(() => import("../AdminPages/kategoripenduduk.jsx"));
+const AdminDashboard = lazy(() => import("../AdminPages/admindashboard.jsx"));
+const TambahStaf = lazy(() => import("../AdminPages/tambahstaf.jsx"));
+const KategoriJabatan = lazy(() => import("../AdminPages/kategorijabatan.jsx"));
+const LayananAdmin = lazy(() => import("../AdminPages/layananadmin.jsx"));
+const PermohonanAdmin = lazy(() => import("../AdminPages/permohonanadmin.jsx"));
 
 function AppRouter() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />            {/* <- tampilkan Home di root */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/singin" element={<SignIn />} />   {/* <- tambahkan ini */}
-        <Route path="/singup" element={<SignUp />} />   {/* <-- tambahkan route signup */}
-        <Route path="/aboutus" element={<TentangKami />} />
-        <Route path="/adminprofile" element={<ProfileAdmin />} />
-        <Route path="/adminhomeslider" element={<HomeSlider />} />
-        <Route path="/beritabaru" element={<BeritaBaru />} />
-        <Route path="/layanan" element={<LayananKami />} />
-        <Route path="/kategoriberita" element={<TambahKategoriBerita />} />
-        <Route path="/tambahpenduduk" element={<TambahPenduduk />} />
-        <Route path="/kategoripenduduk" element={<KategoriPenduduk />} />  {/* <-- route baru */}
-        <Route path="/admin/penduduk" element={<KategoriPenduduk />} />   {/* <-- alias untuk sidebar href */}
-        <Route path="/admindashboard" element={<AdminDashboard />} />  {/* <- tambah route */}
-        <Route path="/tambahstaf" element={<TambahStaf />} />
-        <Route path="/kategorijabatan" element={<KategoriJabatan />} />
-        <Route path="/berita" element={<Berita />} />
-        <Route path="/berita/:id" element={<BeritaDetail />} /> {/* <-- tambah route */}
-        <Route path="/admin/layanan" element={<LayananAdmin />} />
-        <Route path="/admin/permohonan" element={<PermohonanAdmin />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={<div>Memuat halaman...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/singin" element={<SignIn />} />
+          <Route path="/singup" element={<SignUp />} />
+          <Route path="/aboutus" element={<TentangKami />} />
+          <Route path="/adminprofile" element={<ProfileAdmin />} />
+          <Route path="/adminhomeslider" element={<HomeSlider />} />
+          <Route path="/beritabaru" element={<BeritaBaru />} />
+          <Route path="/layanan" element={<LayananKami />} />
+          <Route path="/kategoriberita" element={<TambahKategoriBerita />} />
+          <Route path="/tambahpenduduk" element={<TambahPenduduk />} />
+          <Route path="/kategoripenduduk" element={<KategoriPenduduk />} />
+          <Route path="/admin/penduduk" element={<KategoriPenduduk />} />
+          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/tambahstaf" element={<TambahStaf />} />
+          <Route path="/kategorijabatan" element={<KategoriJabatan />} />
+          <Route path="/berita" element={<Berita />} />
+          <Route path="/berita/:id" element={<BeritaDetail />} />
+          <Route path="/admin/layanan" element={<LayananAdmin />} />
+          <Route path="/admin/permohonan" element={<PermohonanAdmin />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

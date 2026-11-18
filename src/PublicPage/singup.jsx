@@ -50,7 +50,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[url('/map-bg.png')] bg-no-repeat bg-center bg-cover">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
 
       <main className="flex-1 flex items-center justify-center px-6 py-12">
@@ -114,9 +114,7 @@ export default function SignUp() {
                       placeholder="Masukkan password"
                       className="mt-2 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     />
-                    <div className="text-xs text-gray-500 mt-1">
-                      Password harus mengandung minimal 8 karakter, huruf besar, huruf kecil, angka, dan simbol.
-                    </div>
+                    <div className="text-xs text-gray-500 mt-1">Password harus mengandung minimal 8 karakter, huruf besar, huruf kecil, angka, dan simbol.</div>
                     {errors.password && <div className="text-red-600 text-sm mt-1">{errors.password}</div>}
                   </div>
 
@@ -153,10 +151,10 @@ export default function SignUp() {
                   </div>
 
                   <div className="flex gap-3 mt-4">
-                    <button type="button" onClick={() => handleSocialLogin('google')} className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2">
+                    <button type="button" onClick={() => handleSocialLogin("google")} className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2">
                       <img src="/logo%20google.jpg" alt="Google" className="w-5 h-5 object-contain" /> Google
                     </button>
-                    <button type="button" onClick={() => handleSocialLogin('facebook')} className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2">
+                    <button type="button" onClick={() => handleSocialLogin("facebook")} className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2">
                       <img src="/logo%20facebook.png" alt="Facebook" className="w-5 h-5 object-contain" /> Facebook
                     </button>
                   </div>

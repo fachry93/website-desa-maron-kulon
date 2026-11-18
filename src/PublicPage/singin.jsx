@@ -20,11 +20,7 @@ export default function SignIn() {
       h = 700;
     const left = window.screenX + (window.outerWidth - w) / 2;
     const top = window.screenY + (window.outerHeight - h) / 2;
-    const popup = window.open(
-      url,
-      `oauth_${provider}`,
-      `width=${w},height=${h},left=${left},top=${top}`
-    );
+    const popup = window.open(url, `oauth_${provider}`, `width=${w},height=${h},left=${left},top=${top}`);
 
     if (!popup) {
       // popup blocked -> fallback to full redirect
@@ -116,7 +112,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[url('/map-bg.png')] bg-no-repeat bg-center bg-cover">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
 
       <main className="flex-1 flex items-center justify-center px-6 py-12">
@@ -125,23 +121,13 @@ export default function SignIn() {
             {/* Left: illustration & text */}
             <div className="bg-blue-100 p-12 flex flex-col justify-center items-center gap-6">
               <div className="max-w-md text-center">
-                <h3 className="text-sm font-semibold text-gray-700 mb-2">
-                  Melayani Sepenuh Hati
-                </h3>
-                <h1 className="font-extrabold text-3xl md:text-4xl text-black leading-tight">
-                  Membangun Desa Maron Kulon
-                </h1>
-                <p className="mt-4 text-gray-600">
-                  Informasi dan pelayanan publik untuk kemajuan bersama.
-                </p>
+                <h3 className="text-sm font-semibold text-gray-700 mb-2">Melayani Sepenuh Hati</h3>
+                <h1 className="font-extrabold text-3xl md:text-4xl text-black leading-tight">Membangun Desa Maron Kulon</h1>
+                <p className="mt-4 text-gray-600">Informasi dan pelayanan publik untuk kemajuan bersama.</p>
               </div>
 
               <div className="mt-6">
-                <img
-                  src="/sign%20up.png"
-                  alt="Ilustrasi Sign Up"
-                  className="w-72 h-96 object-cover rounded-xl shadow-lg object-center"
-                />
+                <img src="/sign%20up.png" alt="Ilustrasi Sign Up" className="w-72 h-96 object-cover rounded-xl shadow-lg object-center" />
               </div>
             </div>
 
@@ -149,27 +135,17 @@ export default function SignIn() {
             <div className="bg-white p-10 flex flex-col justify-center">
               <div className="max-w-md mx-auto w-full">
                 <div className="flex items-center gap-3 mb-6">
-                  <img
-                    src="/logo_desa.png"
-                    alt="logo desa"
-                    className="w-12 h-12 object-contain"
-                  />
+                  <img src="/logo_desa.png" alt="logo desa" className="w-12 h-12 object-contain" />
                   <div>
-                    <div className="text-sm text-gray-500">
-                      DESA MARON KULON
-                    </div>
+                    <div className="text-sm text-gray-500">DESA MARON KULON</div>
                     <h2 className="text-2xl font-extrabold">Welcome!</h2>
-                    <div className="text-sm text-gray-400">
-                      Sign in to your account
-                    </div>
+                    <div className="text-sm text-gray-400">Sign in to your account</div>
                   </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Email
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700">Email</label>
                     <input
                       type="email"
                       required
@@ -181,9 +157,7 @@ export default function SignIn() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Password
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700">Password</label>
                     <input
                       type="password"
                       required
@@ -199,63 +173,33 @@ export default function SignIn() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className={`mt-3 inline-flex items-center justify-center gap-2 ${
-                          loading
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-blue-600 text-white hover:bg-blue-700"
-                        } px-5 py-2 rounded-full font-semibold`}
+                        className={`mt-3 inline-flex items-center justify-center gap-2 ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"} px-5 py-2 rounded-full font-semibold`}
                       >
                         {loading ? "Signing in..." : "SIGN IN"}
                       </button>
 
-                      <Link
-                        to="/singup"
-                        className="mt-3 inline-flex items-center justify-center gap-2 border border-gray-300 text-gray-800 px-5 py-2 rounded-full font-semibold hover:bg-gray-100"
-                      >
+                      <Link to="/singup" className="mt-3 inline-flex items-center justify-center gap-2 border border-gray-300 text-gray-800 px-5 py-2 rounded-full font-semibold hover:bg-gray-100">
                         SIGN UP
                       </Link>
                     </div>
 
-                    <a
-                      href="#"
-                      className="text-sm text-blue-600 hover:underline"
-                    >
+                    <a href="#" className="text-sm text-blue-600 hover:underline">
                       Forgot Password?
                     </a>
                   </div>
 
                   <div className="flex items-center gap-3 mt-6">
                     <div className="flex-1 h-px bg-gray-200" />
-                    <div className="text-xs text-gray-400 uppercase">
-                      Or Login With
-                    </div>
+                    <div className="text-xs text-gray-400 uppercase">Or Login With</div>
                     <div className="flex-1 h-px bg-gray-200" />
                   </div>
 
                   <div className="flex gap-3 mt-4">
-                    <button
-                      type="button"
-                      onClick={() => handleSocialLogin("google")}
-                      className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2"
-                    >
-                      <img
-                        src="/logo%20google.jpg"
-                        alt="Google"
-                        className="w-5 h-5 object-contain"
-                      />{" "}
-                      Google
+                    <button type="button" onClick={() => handleSocialLogin("google")} className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2">
+                      <img src="/logo%20google.jpg" alt="Google" className="w-5 h-5 object-contain" /> Google
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => handleSocialLogin("facebook")}
-                      className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2"
-                    >
-                      <img
-                        src="/logo%20facebook.png"
-                        alt="Facebook"
-                        className="w-5 h-5 object-contain"
-                      />{" "}
-                      Facebook
+                    <button type="button" onClick={() => handleSocialLogin("facebook")} className="flex-1 border border-gray-300 rounded-md py-2 flex items-center justify-center gap-2">
+                      <img src="/logo%20facebook.png" alt="Facebook" className="w-5 h-5 object-contain" /> Facebook
                     </button>
                   </div>
                 </form>
